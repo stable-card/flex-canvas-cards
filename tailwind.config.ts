@@ -84,11 +84,37 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'gradient-shift': {
+					'0%, 100%': { 'background-position': '0% 50%' },
+					'50%': { 'background-position': '100% 50%' }
+				},
+				'mesh-rotate': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+					'33%': { transform: 'translateY(-10px) rotate(1deg)' },
+					'66%': { transform: 'translateY(-5px) rotate(-1deg)' }
+				},
+				'glow': {
+					'0%': { 'box-shadow': '0 0 20px hsl(250, 75%, 60% / 0.4)' },
+					'100%': { 'box-shadow': '0 0 40px hsl(250, 75%, 60% / 0.8), 0 0 60px hsl(280, 100%, 70% / 0.4)' }
+				},
+				'gradient-x': {
+					'0%, 100%': { transform: 'translateX(0%)' },
+					'50%': { transform: 'translateX(-100%)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite alternate',
+				'gradient-x': 'gradient-x 15s ease infinite',
+				'gradient-shift': 'gradient-shift 3s ease-in-out infinite',
+				'mesh-rotate': 'mesh-rotate 20s linear infinite'
 			}
 		}
 	},
