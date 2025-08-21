@@ -5,129 +5,135 @@ import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
 const samplePerks = [
-  { category: "Dining", reward: "5%", color: "bg-red-500" },
-  { category: "Tech", reward: "3%", color: "bg-blue-500" },
-  { category: "Travel", reward: "4%", color: "bg-green-500" },
-  { category: "Coffee", reward: "8%", color: "bg-yellow-500" }
+  { category: "카페", reward: "8%", color: "bg-accent", pulse: "animate-rebel-pulse" },
+  { category: "테크", reward: "5%", color: "bg-primary", pulse: "animate-chaos-float" },
+  { category: "여행", reward: "6%", color: "bg-electric", pulse: "animate-rebel-pulse" },
+  { category: "쇼핑", reward: "4%", color: "bg-accent", pulse: "animate-chaos-float" }
 ];
 
 const metrics = [
-  { label: "Monthly Rewards", value: "$127", trend: "+23%" },
-  { label: "Active Categories", value: "8", trend: "+2" },
-  { label: "Optimization Score", value: "94%", trend: "+12%" }
+  { label: "월간 리워드", value: "₩187,000", trend: "+34%", color: "text-electric" },
+  { label: "활성 카테고리", value: "12", trend: "+5", color: "text-primary" },
+  { label: "최적화 점수", value: "97%", trend: "+18%", color: "text-accent" }
 ];
 
 export const PerkBuilder = () => {
-  const [inputValue, setInputValue] = useState("I want extra rewards for coffee shops and tech purchases");
+  const [inputValue, setInputValue] = useState("커피숍과 테크 구매에서 더 많은 리워드를 원해요");
   
   return (
-    <section className="py-24 relative">
+    <section className="py-32 relative overflow-hidden">
+      {/* Chaos background effects */}
+      <div className="absolute inset-0 bg-chaos opacity-5 animate-chaos-rotate"></div>
+      <div className="absolute top-1/4 left-0 w-full h-px bg-electric animate-electric-slide"></div>
+      <div className="absolute bottom-3/4 right-0 w-1/2 h-px bg-primary animate-electric-slide" style={{animationDelay: '1s'}}></div>
+      
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Revolutionary Content */}
+          <div className="space-y-10">
             <div>
-              <Badge variant="outline" className="glass mb-4">
-                Perk Builder
+              <Badge variant="outline" className="glass-rebel border-primary/30 mb-6 px-4 py-2 font-bold uppercase tracking-wider">
+                PERK BUILDER
               </Badge>
-              <h2 className="text-5xl font-bold mb-6">
-                Speak Your Rewards Into <span className="text-gradient">Existence</span>
+              <h2 className="text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-8">
+                <span className="glitch" data-text="SPEAK YOUR">SPEAK YOUR</span>
+                <br />
+                <span className="text-electric">REWARDS INTO</span>
+                <br />
+                <span className="text-accent">EXISTENCE</span>
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Just tell us what you want. Our AI creates smart contract policies 
-                that automatically optimize your rewards based on your spending patterns.
+              <p className="text-xl font-medium text-muted-foreground leading-relaxed">
+                그냥 말하세요. <span className="text-electric font-bold">AI가 스마트 컨트랙트 정책을 만들어</span> 
+                당신의 소비 패턴에 따라 자동으로 리워드를 최적화합니다.
               </p>
             </div>
             
-            {/* Features */}
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
-                  <div className="w-3 h-3 rounded-full bg-primary animate-glow"></div>
+            {/* Revolutionary Features */}
+            <div className="space-y-6">
+              {[
+                { title: "자연어 처리", desc: "평범한 한국어로 이상적인 리워드를 설명하세요", icon: "🧠" },
+                { title: "스마트 컨트랙트 자동화", desc: "약관이 아닌 블록체인이 정책을 강제합니다", icon: "⚡" },
+                { title: "실시간 최적화", desc: "당신의 혜택이 소비 습관과 함께 진화합니다", icon: "🚀" }
+              ].map((feature, index) => (
+                <div key={index} className="flex items-start gap-6">
+                  <div className="text-3xl animate-chaos-float" style={{animationDelay: `${index * 0.2}s`}}>
+                    {feature.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-black uppercase tracking-wider mb-2">{feature.title}</h4>
+                    <p className="text-muted-foreground">{feature.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Natural Language Processing</h4>
-                  <p className="text-sm text-muted-foreground">Describe your ideal rewards in plain English</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
-                  <div className="w-3 h-3 rounded-full bg-primary animate-glow animation-delay-200"></div>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Smart Contract Automation</h4>
-                  <p className="text-sm text-muted-foreground">Policies enforced by blockchain, not fine print</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
-                  <div className="w-3 h-3 rounded-full bg-primary animate-glow animation-delay-400"></div>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-1">Real-time Optimization</h4>
-                  <p className="text-sm text-muted-foreground">Your perks evolve with your spending habits</p>
-                </div>
-              </div>
+              ))}
             </div>
             
-            <Button size="lg" className="btn-glow">
-              Try Perk Builder
+            <Button size="lg" className="btn-rebel text-xl px-10 py-6 font-black uppercase tracking-wider">
+              PERK BUILDER 체험하기
             </Button>
           </div>
           
-          {/* Demo Interface */}
-          <div className="space-y-6">
+          {/* Brutal Demo Interface */}
+          <div className="space-y-8">
             {/* Input Interface */}
-            <Card className="card-premium p-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-primary animate-glow"></div>
-                  <span className="font-medium">Perk Builder</span>
+            <Card className="card-rebel p-8 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-2 bg-electric opacity-50"></div>
+              
+              <div className="space-y-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-4 h-4 bg-electric rounded-full animate-rebel-pulse"></div>
+                  <span className="font-black uppercase tracking-wider text-lg">AI PERK GENERATOR</span>
                 </div>
                 
-                <div className="space-y-3">
-                  <label className="text-sm text-muted-foreground">Describe your ideal rewards:</label>
+                <div className="space-y-4">
+                  <label className="font-bold uppercase tracking-wider text-sm text-electric">
+                    이상적인 리워드를 설명하세요:
+                  </label>
                   <Input 
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="glass border-primary/20 focus:border-primary"
-                    placeholder="I want extra rewards for..."
+                    className="glass-rebel border-2 border-primary/30 focus:border-electric bg-black/20 text-white font-medium p-4 text-lg"
+                    placeholder="원하는 혜택을 자유롭게 말해보세요..."
                   />
-                  <Button className="btn-glow w-full">
-                    Generate Perks
+                  <Button className="btn-rebel w-full text-lg font-black uppercase tracking-wider py-4">
+                    AI 혜택 생성
                   </Button>
                 </div>
               </div>
             </Card>
             
             {/* Generated Perks */}
-            <Card className="card-premium p-6">
-              <h4 className="font-semibold mb-4">Your Custom Perks</h4>
-              <div className="grid grid-cols-2 gap-3">
+            <Card className="card-rebel p-8">
+              <div className="absolute top-0 left-0 w-full h-2 bg-primary opacity-50"></div>
+              
+              <h4 className="font-black uppercase tracking-wider text-lg mb-6 text-electric">당신만의 커스텀 혜택</h4>
+              <div className="grid grid-cols-2 gap-4">
                 {samplePerks.map((perk, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 rounded-lg glass">
-                    <div className={`w-3 h-3 rounded-full ${perk.color}`}></div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium">{perk.category}</div>
-                      <div className="text-xs text-muted-foreground">{perk.reward} rewards</div>
+                  <div key={index} className="glass-rebel p-4 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                    <div className={`absolute top-0 left-0 w-full h-1 ${perk.color} opacity-60`}></div>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-4 h-4 rounded-full ${perk.color} ${perk.pulse}`}></div>
+                      <div className="flex-1">
+                        <div className="font-black text-sm">{perk.category}</div>
+                        <div className="text-xs text-muted-foreground font-mono">{perk.reward} 리워드</div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </Card>
             
-            {/* Metrics */}
-            <Card className="card-premium p-6">
-              <h4 className="font-semibold mb-4">Projected Impact</h4>
-              <div className="space-y-3">
+            {/* Brutal Metrics */}
+            <Card className="card-rebel p-8">
+              <div className="absolute top-0 left-0 w-full h-2 bg-accent opacity-50"></div>
+              
+              <h4 className="font-black uppercase tracking-wider text-lg mb-6 text-electric">예상 임팩트</h4>
+              <div className="space-y-4">
                 {metrics.map((metric, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">{metric.label}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">{metric.value}</span>
-                      <span className="text-xs text-primary">{metric.trend}</span>
+                  <div key={index} className="flex justify-between items-center p-3 glass-rebel rounded-xl border border-primary/10">
+                    <span className="font-bold text-sm">{metric.label}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="font-black text-xl">{metric.value}</span>
+                      <span className={`text-sm font-bold ${metric.color}`}>{metric.trend}</span>
                     </div>
                   </div>
                 ))}
