@@ -4,61 +4,49 @@ import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
 const designOptions = [
-  { name: "미드나이트", gradient: "from-black via-gray-900 to-black", active: true },
-  { name: "오로라", gradient: "from-purple-600 via-pink-500 to-purple-600", active: false },
-  { name: "오션", gradient: "from-blue-700 via-cyan-400 to-blue-700", active: false },
-  { name: "썬셋", gradient: "from-orange-600 via-red-500 to-orange-600", active: false }
+  { name: "Midnight", gradient: "from-slate-900 to-slate-700", active: true },
+  { name: "Aurora", gradient: "from-purple-500 to-pink-500", active: false },
+  { name: "Ocean", gradient: "from-blue-600 to-cyan-400", active: false },
+  { name: "Sunset", gradient: "from-orange-500 to-red-500", active: false }
 ];
 
 const materials = [
-  { name: "프리미엄 메탈", price: "무료", selected: true, icon: "🔥" },
-  { name: "카본 파이버", price: "+₩22,000", selected: false, icon: "⚡" },
-  { name: "재활용 바다 플라스틱", price: "+₩8,000", selected: false, icon: "🌊" },
-  { name: "투명 크리스탈", price: "+₩35,000", selected: false, icon: "💎" }
+  { name: "Premium Metal", price: "Free", selected: true },
+  { name: "Carbon Fiber", price: "+$15", selected: false },
+  { name: "Recycled Ocean Plastic", price: "+$5", selected: false },
+  { name: "Transparent Crystal", price: "+$25", selected: false }
 ];
 
 const artworks = [
-  { name: "지오메트릭 웨이브", type: "AI 생성", preview: "🌊", color: "text-electric" },
-  { name: "디지털 코스모스", type: "아티스트 에디션", preview: "✨", color: "text-primary" },
-  { name: "미니멀 라인", type: "클래식", preview: "📐", color: "text-accent" },
-  { name: "당신의 NFT", type: "임포트", preview: "🖼️", color: "text-electric" }
+  { name: "Geometric Waves", type: "AI Generated", preview: "🌊" },
+  { name: "Digital Cosmos", type: "Artist Edition", preview: "✨" },
+  { name: "Minimal Lines", type: "Classic", preview: "📐" },
+  { name: "Your NFT", type: "Import", preview: "🖼️" }
 ];
 
 export const DesignStudio = () => {
   const [selectedDesign, setSelectedDesign] = useState(0);
   
   return (
-    <section className="py-32 relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background">
-      {/* Chaos background effects */}
-      <div className="absolute inset-0 bg-rebel opacity-5"></div>
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-electric opacity-10 blur-3xl animate-chaos-float"></div>
-      <div className="absolute bottom-0 left-0 w-1/4 h-full bg-primary opacity-10 blur-3xl float-chaos"></div>
-      
+    <section className="py-24 relative bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Brutal Design Interface */}
-          <div className="space-y-8 order-2 lg:order-1">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Design Interface */}
+          <div className="space-y-6 order-2 lg:order-1">
             {/* Material Selection */}
-            <Card className="card-rebel p-8 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-2 bg-electric"></div>
-              
-              <h4 className="font-black uppercase tracking-wider text-xl mb-6 flex items-center gap-3">
-                <div className="w-3 h-3 bg-electric rounded-full animate-rebel-pulse"></div>
-                MATERIAL
+            <Card className="card-premium p-6">
+              <h4 className="font-semibold mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-glow"></div>
+                Material
               </h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {materials.map((material, index) => (
-                  <div key={index} className={`p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${
-                    material.selected 
-                      ? 'border-electric bg-electric/10 scale-105' 
-                      : 'border-primary/20 glass-rebel hover:border-primary/40 hover:scale-102'
+                  <div key={index} className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                    material.selected ? 'border-primary bg-primary/5' : 'border-border glass'
                   }`}>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-4">
-                        <div className="text-2xl animate-chaos-float">{material.icon}</div>
-                        <span className="font-black text-lg">{material.name}</span>
-                      </div>
-                      <span className="font-bold text-electric">{material.price}</span>
+                      <span className="font-medium">{material.name}</span>
+                      <span className="text-sm text-primary">{material.price}</span>
                     </div>
                   </div>
                 ))}
@@ -66,133 +54,121 @@ export const DesignStudio = () => {
             </Card>
             
             {/* Color Selection */}
-            <Card className="card-rebel p-8 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-2 bg-primary"></div>
-              
-              <h4 className="font-black uppercase tracking-wider text-xl mb-6 flex items-center gap-3">
-                <div className="w-3 h-3 bg-primary rounded-full animate-chaos-float"></div>
-                COLOR & FINISH
+            <Card className="card-premium p-6">
+              <h4 className="font-semibold mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-glow animation-delay-200"></div>
+                Color & Finish
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {designOptions.map((option, index) => (
                   <div 
                     key={index}
                     onClick={() => setSelectedDesign(index)}
-                    className={`h-20 rounded-2xl bg-gradient-to-br ${option.gradient} cursor-pointer border-4 transition-all duration-300 relative overflow-hidden ${
-                      selectedDesign === index 
-                        ? 'border-electric scale-110 rotate-3' 
-                        : 'border-transparent hover:border-primary/40 hover:scale-105'
+                    className={`h-16 rounded-lg bg-gradient-to-br ${option.gradient} cursor-pointer border-2 transition-all ${
+                      selectedDesign === index ? 'border-primary scale-105' : 'border-transparent'
                     }`}
                   >
-                    <div className="h-full flex items-end p-3">
-                      <span className="text-sm font-black text-white uppercase tracking-wider">{option.name}</span>
+                    <div className="h-full flex items-end p-2">
+                      <span className="text-xs font-medium text-white">{option.name}</span>
                     </div>
-                    {selectedDesign === index && (
-                      <div className="absolute inset-0 bg-electric/20 animate-rebel-pulse"></div>
-                    )}
                   </div>
                 ))}
               </div>
             </Card>
             
             {/* Artwork Selection */}
-            <Card className="card-rebel p-8 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-2 bg-accent"></div>
-              
-              <h4 className="font-black uppercase tracking-wider text-xl mb-6 flex items-center gap-3">
-                <div className="w-3 h-3 bg-accent rounded-full animate-rebel-pulse"></div>
-                ARTWORK & PATTERN
+            <Card className="card-premium p-6">
+              <h4 className="font-semibold mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary animate-glow animation-delay-400"></div>
+                Artwork & Pattern
               </h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {artworks.map((artwork, index) => (
-                  <div key={index} className="flex items-center gap-6 p-4 rounded-2xl glass-rebel cursor-pointer hover:bg-primary/5 transition-all duration-300 border border-primary/10 hover:border-electric/30 group">
-                    <div className="text-3xl animate-chaos-float" style={{animationDelay: `${index * 0.2}s`}}>
-                      {artwork.preview}
-                    </div>
+                  <div key={index} className="flex items-center gap-4 p-3 rounded-lg glass cursor-pointer hover:bg-primary/5 transition-colors">
+                    <div className="text-2xl">{artwork.preview}</div>
                     <div className="flex-1">
-                      <div className="font-black text-lg">{artwork.name}</div>
-                      <div className={`text-sm font-bold ${artwork.color}`}>{artwork.type}</div>
+                      <div className="font-medium">{artwork.name}</div>
+                      <div className="text-xs text-muted-foreground">{artwork.type}</div>
                     </div>
-                    <div className="w-2 h-8 bg-electric rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
                 ))}
               </div>
             </Card>
             
-            <Button className="w-full btn-rebel text-xl py-6 font-black uppercase tracking-wider">
-              이 디자인을 민팅하라
+            <Button className="w-full btn-glow">
+              Mint This Design
             </Button>
           </div>
           
-          {/* Revolutionary Content */}
-          <div className="space-y-10 order-1 lg:order-2">
+          {/* Content */}
+          <div className="space-y-8 order-1 lg:order-2">
             <div>
-              <Badge variant="outline" className="glass-rebel border-accent/30 mb-6 px-4 py-2 font-bold uppercase tracking-wider">
-                DESIGN STUDIO
+              <Badge variant="outline" className="glass mb-4">
+                Design Studio
               </Badge>
-              <h2 className="text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-none mb-8">
-                <span className="glitch" data-text="YOUR">YOUR</span>
-                <br />
-                <span className="text-electric">IDENTITY,</span>
-                <br />
-                <span className="text-accent">MATERIALIZED</span>
+              <h2 className="text-5xl font-bold mb-6">
+                Your <span className="text-gradient">Identity</span>, Materialized
               </h2>
-              <p className="text-xl font-medium text-muted-foreground leading-relaxed">
-                모든 카드는 이야기를 말합니다. <span className="text-electric font-bold">당신의 것을 잊을 수 없게 만드세요.</span> 
-                AI 생성 아트부터 당신만의 NFT까지.
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Every card tells a story. Make yours unforgettable with materials, 
+                colors, and artwork that reflect who you are. From AI-generated art 
+                to your own NFTs.
               </p>
             </div>
             
-            {/* Revolutionary Features */}
-            <div className="space-y-6">
-              {[
-                { title: "실시간 3D 미리보기", desc: "모든 변화를 즉시 사실적으로 확인하세요", icon: "🎮" },
-                { title: "프리미엄 재료", desc: "메탈, 카본파이버, 재활용 플라스틱 등", icon: "⚡" },
-                { title: "디지털 우선 업데이트", desc: "언제든 디자인 변경, 완벽할 때 민팅", icon: "🚀" }
-              ].map((feature, index) => (
-                <div key={index} className="flex items-start gap-6">
-                  <div className="text-3xl animate-rebel-pulse" style={{animationDelay: `${index * 0.3}s`}}>
-                    {feature.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-xl font-black uppercase tracking-wider mb-2">{feature.title}</h4>
-                    <p className="text-muted-foreground">{feature.desc}</p>
-                  </div>
+            {/* Features */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                  <div className="w-3 h-3 rounded-full bg-primary animate-glow"></div>
                 </div>
-              ))}
+                <div>
+                  <h4 className="font-semibold mb-1">Real-time 3D Preview</h4>
+                  <p className="text-sm text-muted-foreground">See every change instantly in photorealistic detail</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                  <div className="w-3 h-3 rounded-full bg-primary animate-glow animation-delay-200"></div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Premium Materials</h4>
+                  <p className="text-sm text-muted-foreground">Metal, carbon fiber, recycled plastics, and more</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mt-1">
+                  <div className="w-3 h-3 rounded-full bg-primary animate-glow animation-delay-400"></div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Digital-First Updates</h4>
+                  <p className="text-sm text-muted-foreground">Change your design anytime, mint when perfect</p>
+                </div>
+              </div>
             </div>
             
-            {/* Live Preview Card with extreme brutalism */}
-            <div className="relative group perspective">
-              <div className="absolute -inset-4 bg-electric/40 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity animate-rebel-pulse"></div>
-              <div className={`relative w-80 h-48 rounded-3xl bg-gradient-to-br ${designOptions[selectedDesign].gradient} p-6 text-white shadow-brutal transform-3d transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
-                {/* Chaos overlay */}
-                <div className="absolute inset-0 bg-chaos opacity-10 rounded-3xl animate-chaos-rotate"></div>
-                
-                {/* Electric borders */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-electric rounded-t-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-accent rounded-b-3xl"></div>
-                
-                <div className="relative z-10 flex flex-col justify-between h-full">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <div className="text-xs font-mono opacity-80 uppercase tracking-wider">FLEX PERKS</div>
-                      <div className="font-black text-lg uppercase tracking-wider">THE UNCARD</div>
-                    </div>
-                    <div className="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center">
-                      <div className="w-4 h-4 bg-white rounded-lg animate-chaos-spin"></div>
-                    </div>
+            {/* Live Preview Card */}
+            <div className="relative group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-primary/40 to-accent/40 rounded-xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
+              <div className={`relative w-64 h-40 rounded-xl bg-gradient-to-br ${designOptions[selectedDesign].gradient} p-4 text-white shadow-xl`}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <div className="text-xs opacity-80">FLEX PERKS</div>
+                    <div className="font-bold">THE UNCARD</div>
                   </div>
-                  
-                  <div className="font-mono text-lg font-black tracking-wider">•••• •••• •••• 2024</div>
-                  
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <div className="text-xs opacity-80 font-mono uppercase tracking-wider">YOUR NAME</div>
-                      <div className="text-sm font-black uppercase tracking-wider">LIVE PREVIEW</div>
-                    </div>
-                    <div className="text-2xl font-black animate-electric-slide">∞</div>
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-white animate-glow"></div>
                   </div>
+                </div>
+                <div className="font-mono text-sm mb-4">•••• •••• •••• 2024</div>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <div className="text-xs opacity-80">YOUR NAME</div>
+                    <div className="text-sm font-semibold">LIVE PREVIEW</div>
+                  </div>
+                  <div className="text-xs opacity-80">∞</div>
                 </div>
               </div>
             </div>

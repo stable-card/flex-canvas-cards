@@ -3,95 +3,79 @@ import { Button } from "@/components/ui/button";
 
 const features = [
   {
-    number: "01",
-    title: "DESIGN\nANYTHING",
-    description: "재료부터 색상, 패턴, 각인까지. 당신의 카드가 곧 캔버스입니다. AI 생성 아트워크부터 NFT 연동까지.",
-    features: ["AI 생성 아트워크", "아티스트 콜라보", "NFT 통합", "LED 커스터마이징"],
-    gradient: "from-primary via-accent to-primary"
+    step: "01",
+    title: "Design Anything",
+    description: "From materials to colors, patterns to engravings. Your card becomes your canvas with our Design Studio.",
+    features: ["AI-Generated Artwork", "Artist Collaborations", "NFT Integration", "LED Customization"],
+    color: "from-primary to-accent"
   },
   {
-    number: "02", 
-    title: "PROGRAM\nYOUR PERKS",
-    description: "자연어로 맞춤 리워드 정책을 생성하세요. AI가 당신의 취향을 스마트 컨트랙트로 번역합니다.",
-    features: ["자연어 입력", "스마트 컨트랙트", "실시간 최적화", "즉시 리워드"],
-    gradient: "from-accent via-primary to-accent"
+    step: "02", 
+    title: "Program Your Perks",
+    description: "Use natural language to create custom reward policies. Our AI translates your preferences into smart contracts.",
+    features: ["Natural Language Input", "Smart Contract Automation", "Real-time Optimization", "Instant Rewards"],
+    color: "from-accent to-primary"
   },
   {
-    number: "03",
-    title: "OWN YOUR\nEXPERIENCE", 
-    description: "실시간 업데이트되는 디지털 우선 카드. 원할 때마다 실물 버전을 민팅하세요.",
-    features: ["실시간 업데이트", "Apple/Google Pay", "실물 민팅", "완전한 소유권"],
-    gradient: "from-primary/80 via-accent/60 to-primary/80"
+    step: "03",
+    title: "Own Your Experience", 
+    description: "Digital-first cards that update in real-time. Mint physical versions whenever you want.",
+    features: ["Real-time Updates", "Apple/Google Pay", "Physical Minting", "Complete Ownership"],
+    color: "from-primary/80 to-accent/80"
   }
 ];
 
 export const Features = () => {
   return (
-    <section className="py-32 relative overflow-hidden">
-      {/* Chaos background */}
-      <div className="absolute inset-0 bg-rebel opacity-10"></div>
-      <div className="absolute top-1/3 left-0 w-full h-px bg-electric animate-electric-slide"></div>
-      <div className="absolute bottom-1/3 left-0 w-full h-px bg-electric animate-electric-slide" style={{animationDelay: '3s'}}></div>
+    <section className="py-24 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        {/* Revolutionary title */}
-        <div className="text-center mb-20">
-          <div className="mb-8">
-            <h2 className="text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
-              <span className="glitch" data-text="THREE STEPS">THREE STEPS</span>
-            </h2>
-            <div className="text-6xl lg:text-7xl font-black uppercase tracking-tighter text-electric -mt-4">
-              TO FREEDOM
-            </div>
-          </div>
-          <p className="text-xl font-medium text-muted-foreground max-w-3xl mx-auto">
-            쿠키커터 금융 상품에서 벗어나세요. <span className="text-electric font-bold">당신만의 것을 창조하세요.</span>
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold mb-6">
+            Three Steps to <span className="text-gradient">Financial Freedom</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Break free from cookie-cutter financial products. Create something uniquely yours.
           </p>
         </div>
         
-        {/* Brutal feature cards */}
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="relative group">
-              {/* Floating number */}
-              <div className="absolute -top-8 -left-4 text-8xl font-black text-primary/20 animate-chaos-float z-0">
-                {feature.number}
+            <Card key={index} className="card-premium p-8 group hover:scale-105 transition-all duration-500 relative overflow-hidden">
+              {/* Feature gradient overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+              
+              {/* Step number */}
+              <div className="relative z-10 mb-6">
+                <div className="text-6xl font-bold text-gradient opacity-50">
+                  {feature.step}
+                </div>
               </div>
               
-              <Card className="card-rebel p-10 group-hover:scale-105 transition-all duration-500 relative overflow-hidden h-full">
-                {/* Chaos overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+              {/* Content */}
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-2xl font-bold">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
                 
-                {/* Electric border effect */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-electric opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <div className="relative z-10 space-y-8">
-                  {/* Title */}
-                  <h3 className="text-3xl font-black uppercase tracking-wider leading-tight whitespace-pre-line">
-                    {feature.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed font-medium">
-                    {feature.description}
-                  </p>
-                  
-                  {/* Feature list */}
-                  <div className="space-y-4">
-                    {feature.features.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-4">
-                        <div className="w-3 h-3 bg-electric rounded-full animate-rebel-pulse"></div>
-                        <span className="font-bold">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <Button variant="outline" className="w-full glass-rebel border-primary/30 font-bold uppercase tracking-wider group-hover:btn-rebel transition-all duration-300">
-                    UNLEASH {feature.title.split('\n')[0]}
-                  </Button>
+                {/* Feature list */}
+                <div className="space-y-3">
+                  {feature.features.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-glow"></div>
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
                 </div>
-              </Card>
-            </div>
+                
+                <Button variant="outline" className="w-full glass group-hover:btn-glow transition-all duration-300">
+                  Explore {feature.title}
+                </Button>
+              </div>
+            </Card>
           ))}
         </div>
       </div>
