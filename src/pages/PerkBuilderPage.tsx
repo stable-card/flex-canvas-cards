@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { PerkBuilder } from "@/components/PerkBuilder";
+import { PerkWizard } from "@/components/PerkWizard";
 import { CTA } from "@/components/CTA";
 import { PageTransition } from "@/components/PageTransition";
 
@@ -8,7 +8,7 @@ const PerkBuilderPage = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <PageTransition>
-        <PerkBuilder />
+        <PerkWizard />
         <CTA />
       </PageTransition>
     </div>

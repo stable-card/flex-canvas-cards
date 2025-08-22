@@ -43,14 +43,25 @@ const basePerks = [
   { category: "Travel", reward: 4, color: "#22c55e", rewardType: "points" as RewardType },
 ];
 
-export const PerkBuilder = () => {
+export interface PerkBuilderProps {
+  initialCategories?: string[];
+}
+
+export const PerkBuilder = ({ initialCategories }: PerkBuilderProps) => {
   const [inputValue, setInputValue] = useState(
     "I want extra rewards for coffee shops and tech purchases"
   );
-  const [perks, setPerks] = useState(() => [
+  const defaultPerks = [
     ...basePerks,
-    { category: "Coffee", reward: 5, color: "#eab308" },
-  ]);
+    { category: "Coffee", reward: 5, color: "#eab308", rewardType: "points" as RewardType },
+  ];
+
+  const [perks, setPerks] = useState(() => {
+    if (initialCategories && initialCategories.length > 0) {
+      return defaultPerks.filter((p) => initialCategories.includes(p.category));
+    }
+    return defaultPerks;
+  });
 
   const coffeeReward = useMemo(() => {
     const coffee = perks.find((p) => p.category === "Coffee");
