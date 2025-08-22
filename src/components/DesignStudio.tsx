@@ -12,10 +12,10 @@ const designOptions = [
 ];
 
 const materials = [
-  { name: "Premium Metal", price: "Free", selected: true },
-  { name: "Carbon Fiber", price: "+$15", selected: false },
-  { name: "Recycled Ocean Plastic", price: "+$5", selected: false },
-  { name: "Transparent Crystal", price: "+$25", selected: false }
+  { name: "Premium Metal", price: "Free" },
+  { name: "Carbon Fiber", price: "+$15" },
+  { name: "Recycled Ocean Plastic", price: "+$5" },
+  { name: "Transparent Crystal", price: "+$25" },
 ];
 
 const artworks = [
@@ -27,6 +27,8 @@ const artworks = [
 
 export const DesignStudio = () => {
   const [selectedDesign, setSelectedDesign] = useState(0);
+  const [selectedMaterial, setSelectedMaterial] = useState(0);
+  const [selectedArtwork, setSelectedArtwork] = useState(0);
   
   return (
     <section id="design-studio" className="py-24 relative bg-gradient-to-b from-background to-secondary/20 section-alt section-angled">
@@ -42,9 +44,15 @@ export const DesignStudio = () => {
               </h4>
               <div className="space-y-3">
                 {materials.map((material, index) => (
-                  <div key={index} className={`p-3 rounded-lg border cursor-pointer transition-all ${
-                    material.selected ? 'border-primary bg-primary/5' : 'border-border glass'
-                  }`}>
+                  <div
+                    key={index}
+                    onClick={() => setSelectedMaterial(index)}
+                    className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                      selectedMaterial === index
+                        ? 'border-primary bg-primary/5'
+                        : 'border-border glass'
+                    }`}
+                  >
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{material.name}</span>
                       <span className="text-sm text-primary">{material.price}</span>
@@ -85,7 +93,13 @@ export const DesignStudio = () => {
               </h4>
               <div className="space-y-3">
                 {artworks.map((artwork, index) => (
-                  <div key={index} className="flex items-center gap-4 p-3 rounded-lg glass cursor-pointer hover:bg-primary/5 transition-colors">
+                  <div
+                    key={index}
+                    onClick={() => setSelectedArtwork(index)}
+                    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-colors ${
+                      selectedArtwork === index ? 'bg-primary/5 border border-primary' : 'glass hover:bg-primary/5'
+                    }`}
+                  >
                     <div className="text-2xl">{artwork.preview}</div>
                     <div className="flex-1">
                       <div className="font-medium">{artwork.name}</div>
@@ -170,6 +184,11 @@ export const DesignStudio = () => {
                     <div className="text-sm font-semibold">LIVE PREVIEW</div>
                   </div>
                   <div className="text-xs opacity-80">∞</div>
+                </div>
+                {/* Dynamic details */}
+                <div className="mt-2 flex justify-between text-xs opacity-80">
+                  <span>{materials[selectedMaterial].name}</span>
+                  <span>{artworks[selectedArtwork].preview}</span>
                 </div>
               </div>
             </div>

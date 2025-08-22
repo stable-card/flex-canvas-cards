@@ -42,6 +42,7 @@ export const Navigation = () => {
             <Link to="/perk-builder" className={`${location.pathname==="/perk-builder"?"text-foreground":"text-muted-foreground"} hover:text-foreground transition-colors`}>Perk Builder</Link>
             <Link to="/design-studio" className={`${location.pathname==="/design-studio"?"text-foreground":"text-muted-foreground"} hover:text-foreground transition-colors`}>Design Studio</Link>
             <Link to="/community" className={`${location.pathname==="/community"?"text-foreground":"text-muted-foreground"} hover:text-foreground transition-colors`}>Community</Link>
+            <Link to="/merchant" className={`${location.pathname==="/merchant"?"text-foreground":"text-muted-foreground"} hover:text-foreground transition-colors`}>Merchants</Link>
           </div>
           
           {/* CTA Buttons + Theme toggle */}
@@ -50,8 +51,8 @@ export const Navigation = () => {
             <Button variant="outline" className="glass hidden sm:flex" onClick={() => toast({ title: "Sign In", description: "로그인 기능은 곧 제공될 예정입니다 (mock)" })}>
               Sign In
             </Button>
-            <Button className="btn-glow" onClick={() => toast({ title: "Get Started", description: "가입 플로우가 곧 시작됩니다 (mock)" })}>
-              Get Started
+            <Button asChild className="btn-glow">
+              <Link to="/design-studio">Get Started</Link>
             </Button>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { HeroCardSlider } from "./HeroCardSlider";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   // 배경 메쉬 그라디언트 회전을 마우스 움직임과 연동하기 위한 상태
@@ -52,8 +53,8 @@ export const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="btn-glow text-lg px-8 py-6" onClick={() => toast({ title: "🎨 Design Studio", description: "Design Studio 페이지로 이동 (mock)" })}>
-                Create Your Uncard
+              <Button asChild size="lg" className="btn-glow text-lg px-8 py-6">
+                <Link to="/design-studio">Create Your Uncard</Link>
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-6 glass" onClick={() => toast({ title: "Demo Video", description: "Demo 영상 재생 예정 (mock)" })}>
                 Watch Demo

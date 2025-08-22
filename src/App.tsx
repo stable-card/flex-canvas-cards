@@ -9,6 +9,7 @@ import FeaturesPage from "./pages/FeaturesPage";
 import PerkBuilderPage from "./pages/PerkBuilderPage";
 import DesignStudioPage from "./pages/DesignStudioPage";
 import CommunityPage from "./pages/CommunityPage";
+import MerchantPage from "./pages/MerchantPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
         <Route path="/perk-builder" element={<PerkBuilderPage />} />
         <Route path="/design-studio" element={<DesignStudioPage />} />
         <Route path="/community" element={<CommunityPage />} />
+        <Route path="/merchant" element={<MerchantPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
