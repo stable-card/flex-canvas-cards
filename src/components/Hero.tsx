@@ -1,11 +1,35 @@
 import { Button } from "@/components/ui/button";
-import { InteractiveCard } from "./InteractiveCard";
+import { HeroCardSlider } from "./HeroCardSlider";
+import { useState } from "react";
 
 export const Hero = () => {
+  // 배경 메쉬 그라디언트 회전을 마우스 움직임과 연동하기 위한 상태
+  const [bgRotate, setBgRotate] = useState(0);
+  const [pointer, setPointer] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const { clientX, clientY, currentTarget } = e;
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+
+    // -0.5 ~ 0.5 범위
+    const xRatio = (clientX - left) / width - 0.5;
+    const yRatio = (clientY - top) / height - 0.5;
+
+    // 배경 회전
+    setBgRotate(xRatio * 30);
+    // ThreeJS 카드용 포인터 저장 (x,y 그대로 전달)
+    setPointer({ x: xRatio, y: yRatio });
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
       {/* Animated mesh background */}
-      <div className="absolute inset-0 bg-mesh animate-mesh-rotate opacity-10"></div>
+      <div className="absolute inset-0 bg-mesh animate-mesh-rotate opacity-15"></div>
       
       {/* Glow effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-glow"></div>
@@ -16,7 +40,8 @@ export const Hero = () => {
           {/* Hero Content */}
           <div className="space-y-8">
             <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-              Your Card,{" "}
+              Your Card
+              <br />
               <span className="text-gradient">Your Rules</span>
             </h1>
             
@@ -50,9 +75,9 @@ export const Hero = () => {
             </div>
           </div>
           
-          {/* Interactive Card */}
+          {/* 3D Interactive Card */}
           <div className="flex justify-center lg:justify-end">
-            <InteractiveCard />
+            <HeroCardSlider />
           </div>
         </div>
       </div>

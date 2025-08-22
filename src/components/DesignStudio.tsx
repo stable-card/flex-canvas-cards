@@ -28,7 +28,7 @@ export const DesignStudio = () => {
   const [selectedDesign, setSelectedDesign] = useState(0);
   
   return (
-    <section className="py-24 relative bg-gradient-to-b from-background to-secondary/20">
+    <section id="design-studio" className="py-24 relative bg-gradient-to-b from-background to-secondary/20 section-alt section-angled">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Design Interface */}

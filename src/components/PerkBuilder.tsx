@@ -2,26 +2,29 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { useState, useMemo } from "react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-const samplePerks = [
-  { category: "Dining", reward: "5%", color: "bg-red-500" },
-  { category: "Tech", reward: "3%", color: "bg-blue-500" },
-  { category: "Travel", reward: "4%", color: "bg-green-500" },
-  { category: "Coffee", reward: "8%", color: "bg-yellow-500" }
-];
-
-const metrics = [
-  { label: "Monthly Rewards", value: "$127", trend: "+23%" },
-  { label: "Active Categories", value: "8", trend: "+2" },
-  { label: "Optimization Score", value: "94%", trend: "+12%" }
+const basePerks = [
+  { category: "Dining", reward: 5, color: "#ef4444" },
+  { category: "Tech", reward: 3, color: "#3b82f6" },
+  { category: "Travel", reward: 4, color: "#22c55e" },
 ];
 
 export const PerkBuilder = () => {
   const [inputValue, setInputValue] = useState("I want extra rewards for coffee shops and tech purchases");
+  const [coffeeReward, setCoffeeReward] = useState(5);
+
+  const perks = useMemo(() => {
+    return [
+      ...basePerks,
+      { category: "Coffee", reward: coffeeReward, color: "#eab308" },
+    ];
+  }, [coffeeReward]);
   
   return (
-    <section className="py-24 relative">
+    <section id="perk-builder" className="py-24 relative section-angled">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -102,35 +105,42 @@ export const PerkBuilder = () => {
               </div>
             </Card>
             
-            {/* Generated Perks */}
+            {/* Slider Control */}
             <Card className="card-premium p-6">
-              <h4 className="font-semibold mb-4">Your Custom Perks</h4>
-              <div className="grid grid-cols-2 gap-3">
-                {samplePerks.map((perk, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 rounded-lg glass">
-                    <div className={`w-3 h-3 rounded-full ${perk.color}`}></div>
-                    <div className="flex-1">
-                      <div className="text-sm font-medium">{perk.category}</div>
-                      <div className="text-xs text-muted-foreground">{perk.reward} rewards</div>
-                    </div>
-                  </div>
-                ))}
+              <h4 className="font-semibold mb-4">Adjust Coffee Rewards (%)</h4>
+              <div className="space-y-6">
+                <Slider
+                  defaultValue={[coffeeReward]}
+                  max={10}
+                  step={1}
+                  min={0}
+                  onValueChange={(val) => setCoffeeReward(val[0])}
+                />
+                <div className="text-center text-lg font-medium">
+                  {coffeeReward}% back at coffee shops
+                </div>
               </div>
             </Card>
-            
-            {/* Metrics */}
+
+            {/* Rewards Bar Chart */}
             <Card className="card-premium p-6">
-              <h4 className="font-semibold mb-4">Projected Impact</h4>
-              <div className="space-y-3">
-                {metrics.map((metric, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">{metric.label}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">{metric.value}</span>
-                      <span className="text-xs text-primary">{metric.trend}</span>
-                    </div>
-                  </div>
-                ))}
+              <h4 className="font-semibold mb-4">Reward Breakdown</h4>
+              <div className="w-full h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={perks}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <XAxis dataKey="category" stroke="#888" />
+                    <YAxis stroke="#888" />
+                    <Tooltip />
+                    <Bar dataKey="reward" fill="url(#grad)" />
+                    <defs>
+                      <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="hsl(var(--primary))" />
+                        <stop offset="100%" stopColor="hsl(var(--accent))" />
+                      </linearGradient>
+                    </defs>
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </Card>
           </div>

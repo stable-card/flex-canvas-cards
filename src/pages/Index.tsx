@@ -4,16 +4,18 @@ import { Features } from "@/components/Features";
 import { PerkBuilder } from "@/components/PerkBuilder";
 import { DesignStudio } from "@/components/DesignStudio";
 import { CTA } from "@/components/CTA";
+import { CommunityGallery } from "@/components/CommunityGallery";
+import { PageTransition } from "@/components/PageTransition";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <Hero />
-      <Features />
-      <PerkBuilder />
-      <DesignStudio />
-      <CTA />
+      <PageTransition>
+        <Hero />
+        <CTA />
+      </PageTransition>
+      <CommunityGallery />
       
       {/* Footer */}
       <footer className="border-t border-border/50 py-12">
