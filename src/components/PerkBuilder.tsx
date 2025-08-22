@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
@@ -75,7 +76,7 @@ export const PerkBuilder = () => {
               </div>
             </div>
             
-            <Button size="lg" className="btn-glow">
+            <Button size="lg" className="btn-glow" onClick={() => toast({ title: "Perk Builder", description: "Perk Builder 데모 실행 (mock)" })}>
               Try Perk Builder
             </Button>
           </div>
@@ -98,7 +99,7 @@ export const PerkBuilder = () => {
                     className="glass border-primary/20 focus:border-primary"
                     placeholder="I want extra rewards for..."
                   />
-                  <Button className="btn-glow w-full">
+                  <Button className="btn-glow w-full" onClick={() => toast({ title: "Generate Perks", description: "입력 내용을 기반으로 mock perks 생성" })}>
                     Generate Perks
                   </Button>
                 </div>

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -46,10 +47,10 @@ export const Navigation = () => {
           {/* CTA Buttons + Theme toggle */}
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Button variant="outline" className="glass hidden sm:flex">
+            <Button variant="outline" className="glass hidden sm:flex" onClick={() => toast({ title: "Sign In", description: "로그인 기능은 곧 제공될 예정입니다 (mock)" })}>
               Sign In
             </Button>
-            <Button className="btn-glow">
+            <Button className="btn-glow" onClick={() => toast({ title: "Get Started", description: "가입 플로우가 곧 시작됩니다 (mock)" })}>
               Get Started
             </Button>
           </div>

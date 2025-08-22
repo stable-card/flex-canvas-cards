@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
 
 export const CTA = () => {
@@ -25,7 +26,7 @@ export const CTA = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button size="lg" className="btn-glow text-lg px-10 py-6">
+              <Button size="lg" className="btn-glow text-lg px-10 py-6" onClick={() => toast({ title: "Create Uncard", description: "Uncard 생성 플로우가 시작됩니다 (mock)" })}>
                 Create Your Uncard Now
               </Button>
               <div className="text-sm text-muted-foreground">

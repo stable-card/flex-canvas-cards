@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
@@ -95,7 +96,7 @@ export const DesignStudio = () => {
               </div>
             </Card>
             
-            <Button className="w-full btn-glow">
+            <Button className="w-full btn-glow" onClick={() => toast({ title: "Mint", description: "카드를 민팅합니다 (mock)" })}>
               Mint This Design
             </Button>
           </div>

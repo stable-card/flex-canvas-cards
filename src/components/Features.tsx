@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 
 const features = [
   {
@@ -71,7 +72,7 @@ export const Features = () => {
                   ))}
                 </div>
                 
-                <Button variant="outline" className="w-full glass group-hover:btn-glow transition-all duration-300">
+                <Button variant="outline" className="w-full glass group-hover:btn-glow transition-all duration-300" onClick={() => toast({ title: `Explore ${feature.title}`, description: "현재 페이지의 mock 탐험" })}>
                   Explore {feature.title}
                 </Button>
               </div>
